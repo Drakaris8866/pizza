@@ -1,0 +1,20 @@
+.root {
+  display: flex;
+  gap: 15px;
+  color: #fff;
+
+  li {
+    a {
+      padding: 15px 18px;
+      border: 1px solid #fe5f1e;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease-out;
+      &:hover{
+        background: #fe5f1e;
+        color: #fff;
+      }
+    }
+  }
+
+}
