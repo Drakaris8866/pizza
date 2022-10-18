@@ -3,6 +3,9 @@
 .pizza-block {
   text-align: center;
   margin-bottom: 65px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &:not(:nth-of-type(4n)) {
     margin-right: 35px;

@@ -1,17 +1,36 @@
 import React from "react";
+import {setSortBy} from "../store/filterSlice";
 
-export function Sort({selectedSortBy, setSelectedSortBy}) {
+export function Sort({sortBy, dispatch}) {
 
     const [open, setOpen] = React.useState(false)
+    const sortRef = React.useRef()
 
     const sortCategory = ["популярности", "цене", "алфавиту"]
 
     const handleSortClick = (index) => {
-        setSelectedSortBy(index)
+        dispatch(setSortBy(index))
         setOpen(false)
     }
 
-    return <div className="sort">
+    function handleClick(e) {
+        if (!e.path.includes(sortRef.current)) {
+            setOpen(false)
+        }
+    }
+
+    React.useEffect(() => {
+        document.body.addEventListener("click", (e) => {
+            handleClick(e)
+        })
+        return () => {
+            document.body.removeEventListener("click", (e) => {
+                handleClick(e)
+            })
+        }
+    }, [])
+
+    return <div ref={sortRef} className="sort">
         <div onClick={() => setOpen(!open)} className="sort__label">
             <svg
                 width="10"
@@ -27,11 +46,12 @@ export function Sort({selectedSortBy, setSelectedSortBy}) {
                 />
             </svg>
             <b>Сортировка по:</b>
-            <span>{sortCategory[selectedSortBy]}</span>
+            <span>{sortCategory[sortBy]}</span>
         </div>
         <div onClick={(e) => console.log(e.target)} className={`sort__popup ${open && "_active"}`}>
             <ul>
-                {sortCategory.map((item, index) => <li className={`${selectedSortBy === index && "active"}`} key={index} onClick={() => handleSortClick(index)}>{item}</li>)}
+                {sortCategory.map((item, index) => <li className={`${sortBy === index && "active"}`} key={index}
+                                                       onClick={() => handleSortClick(index)}>{item}</li>)}
             </ul>
         </div>
     </div>;

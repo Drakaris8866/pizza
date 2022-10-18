@@ -2,7 +2,15 @@
   display: flex;
   gap: 15px;
   color: #fff;
+  :global{
+    .selected{
+      a{
+        background: #fe5f1e;
+        color: #fff;
+      }
 
+    }
+  }
   li {
     a {
       padding: 15px 18px;

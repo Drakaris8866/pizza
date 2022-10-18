@@ -1,0 +1,21 @@
+.pizza-info{
+  &__row{
+    display: flex;
+    gap: 20px;
+  }
+  &__title{
+    margin-bottom: 15px;
+  }
+  &__price{
+    margin-bottom: 10px;
+  }
+  &__desc{
+    text-align: justify;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  &__btn{
+    width: 100%;
+    font-size: 24px;
+  }
+}
