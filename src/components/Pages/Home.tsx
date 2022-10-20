@@ -1,26 +1,25 @@
-import {Categories} from "../Categories";
-import {Sort} from "../Sort";
-import {PizzaBlock} from "../PizzaBlock/PizzaBlock";
+import {PizzaBlock, Sort, Categories} from "../index";
 import PizzaLoader from "../PizzaBlock/PizzaLoader";
-import React from "react";
+import React, {FC} from "react";
 import Pagination from "../Pagination";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import qs from 'qs'
 import {useNavigate} from "react-router-dom";
-import {setFilters} from "../../store/filterSlice";
-import {fetchPizzas} from "../../store/pizzasSlice";
+import {setCategory, setCurrentPage, setFilters, setSortBy} from "../../store/filterSlice";
+import {fetchPizzas, IParams} from "../../store/pizzasSlice";
+import {RootState, useAppDispatch} from "../../store/store";
 
-const Home = () => {
+const Home: FC = () => {
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
     const warSearch = React.useRef(false)
     const isMounted = React.useRef(false)
 
-    const {items, statusOfLoading} = useSelector(({pizzas}) => pizzas)
-    const {activeCategory, sortBy, currentPage} = useSelector(({filter}) => filter)
-    const {searchInputValue} = useSelector(({search}) => search)
+    const {items, statusOfLoading} = useSelector(({pizzas}: RootState) => pizzas)
+    const {activeCategory, sortBy, currentPage} = useSelector(({filter}: RootState) => filter)
+    const {searchInputValue} = useSelector(({search}: RootState) => search)
 
     React.useEffect(() => {
         if (window.location.search) {
@@ -62,7 +61,7 @@ const Home = () => {
             } else return 'sortBy=title&order=desc'
         }
 
-        const params = {
+        const params: IParams = {
             sortCategory,
             search,
             pagination,
@@ -72,12 +71,22 @@ const Home = () => {
         dispatch(fetchPizzas(params))
     }
 
+    const onChangeCategory = (index: number) => {
+        dispatch(setCategory(index))
+    }
+    const onChangeSortBy = (index: number) => {
+        dispatch(setSortBy(index))
+    }
+    const onChangePage = (page: number) => {
+        dispatch(setCurrentPage(page))
+    }
+
     return (
         <div className="content">
             <div className="container">
                 <div className="content__top">
-                    <Categories dispatch={dispatch} activeCategory={activeCategory}/>
-                    <Sort dispatch={dispatch} sortBy={sortBy}/>
+                    <Categories onChangeCategory={onChangeCategory} activeCategory={activeCategory}/>
+                    <Sort onChangeSortBy={onChangeSortBy} sortBy={sortBy}/>
                 </div>
                 <h2 className="content__title">Все пиццы</h2>
                 <div className="content__items">
@@ -87,7 +96,7 @@ const Home = () => {
                             key={index}/>)
                     }
                 </div>
-                <Pagination dispatch={dispatch}/>
+                <Pagination currentPage={currentPage} onChangePage={onChangePage}/>
             </div>
         </div>
     );

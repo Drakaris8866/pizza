@@ -1,16 +1,16 @@
 import styles from './search.module.scss'
-import {useDispatch} from "react-redux";
 import {setInputValue} from "../../store/searchSlice";
 import debounce from 'lodash.debounce'
-import React from "react";
+import React, {FC} from "react";
+import {useAppDispatch} from "../../store/store";
 
-const Search = () => {
+const Search: FC = () => {
 
-    const [value, setValue] = React.useState('')
+    const [value, setValue] = React.useState<string>('')
 
-    const inputRef = React.useRef()
+    const inputRef = React.useRef<HTMLInputElement>(null)
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     const updateSearchValue = React.useCallback(
         debounce((str) => {
@@ -20,7 +20,7 @@ const Search = () => {
     );
 
 
-    const onInputChange = (e) => {
+    const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
         updateSearchValue(e.target.value)
     }
@@ -28,7 +28,7 @@ const Search = () => {
     const onClickClear = () => {
         setValue('')
         dispatch(setInputValue(''))
-        inputRef.current.focus()
+        inputRef.current?.focus()
     }
 
     return (
@@ -42,7 +42,7 @@ const Search = () => {
                 <line fill="none" stroke="#000000" strokeMiterlimit="10" strokeWidth="4" x1="32.229" x2="45.5"
                       y1="32.229" y2="45.5"/>
             </svg>
-            <input ref={inputRef} value={value} onChange={e => onInputChange(e)}
+            <input ref={inputRef} value={value} onChange={onInputChange}
                    className={styles.input} type="text" placeholder="Поиск..."/>
             <svg onClick={onClickClear} className={styles.clearIcon} viewBox="0 0 20 19.84">
                 <path

@@ -1,9 +1,20 @@
-import {useDispatch} from "react-redux";
 import {addItem, removeItem} from "../../store/cartSlice";
+import {FC} from "react";
+import {useAppDispatch} from "../../store/store";
 
-export function CartItem({id, title, price, count, imageUrl, currentSize, currentType}) {
+type CartItemProps = {
+    id: string,
+    title: string,
+    imageUrl: string,
+    price: number,
+    count: number,
+    currentSize: number,
+    currentType: string
+}
 
-    const dispatch = useDispatch()
+export const CartItem: FC<CartItemProps> = ({id, title, price, count, imageUrl, currentSize, currentType}) => {
+
+    const dispatch = useAppDispatch()
 
     return <div className="cart__item">
         <div className="cart__item-img">
@@ -18,7 +29,8 @@ export function CartItem({id, title, price, count, imageUrl, currentSize, curren
             <p>{currentType}, {currentSize} см.</p>
         </div>
         <div className="cart__item-count">
-            <div onClick={() => dispatch(removeItem({id, currentSize, currentType}))} className="button button--outline button--circle cart__item-count-minus">
+            <div onClick={() => dispatch(removeItem({id, currentSize, currentType}))}
+                 className="button button--outline button--circle cart__item-count-minus">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -31,7 +43,8 @@ export function CartItem({id, title, price, count, imageUrl, currentSize, curren
 
             </div>
             <b>{count}</b>
-            <div onClick={() => dispatch(addItem({id, currentSize, currentType}))} className="button button--outline button--circle cart__item-count-plus">
+            <div onClick={() => dispatch(addItem({id, title, price, count, imageUrl, currentSize, currentType}))}
+                 className="button button--outline button--circle cart__item-count-plus">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
                     <path

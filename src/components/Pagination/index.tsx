@@ -1,19 +1,24 @@
 import ReactPaginate from "react-paginate";
 
 import styles from './pagination.module.scss'
-import {setCurrentPage} from "../../store/filterSlice";
+import {FC} from "react";
 
-const index = ({dispatch}) => {
+type PaginationProps = {
+    currentPage: number,
+    onChangePage: (page: number) => void
+}
+
+const index: FC<PaginationProps> = ({currentPage, onChangePage}) => {
     return (
         <ReactPaginate
             className={styles.root}
             breakLabel="..."
             nextLabel=">"
-            onPageChange={(e) => dispatch(setCurrentPage(e.selected + 1))}
+            onPageChange={(e) => onChangePage(e.selected + 1)}
             pageRangeDisplayed={4}
             pageCount={3}
+            forcePage={currentPage - 1}
             previousLabel="<"
-            renderOnZeroPageCount={null}
         />
     );
 }

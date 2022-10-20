@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
+import {createSlice} from '@reduxjs/toolkit'
+import {PayloadAction} from "@reduxjs/toolkit";
 
 const initialState = {
     activeCategory: 0,
@@ -10,13 +11,13 @@ export const filterSlice = createSlice({
     name: 'filter',
     initialState,
     reducers: {
-        setCategory: (state, action) => {
+        setCategory: (state, action: PayloadAction<number>) => {
             state.activeCategory = action.payload
         },
-        setSortBy: (state, action) => {
+        setSortBy: (state, action: PayloadAction<number>) => {
             state.sortBy = action.payload
         },
-        setCurrentPage: (state, action) => {
+        setCurrentPage: (state, action: PayloadAction<number>) => {
             state.currentPage = action.payload
         },
         setFilters: (state, action) => {
@@ -28,6 +29,6 @@ export const filterSlice = createSlice({
 })
 
 
-export const { setCategory, setSortBy, setCurrentPage, setFilters } = filterSlice.actions
+export const {setCategory, setSortBy, setCurrentPage, setFilters} = filterSlice.actions
 
 export default filterSlice.reducer

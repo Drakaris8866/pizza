@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import Preloader from "./Preloader";
 
-const PizzaInfo = () => {
+const PizzaInfo: FC = () => {
 
-    const [pizza, setPizza] = React.useState()
+    const [pizza, setPizza] = React.useState<{
+        imageUrl: string,
+        title: string,
+        price: number
+    }>()
     const {id} = useParams()
     const navigate = useNavigate()
 
@@ -26,11 +30,11 @@ const PizzaInfo = () => {
             {pizza ?
                 <div className="pizza-info__row">
                     <div className="pizza-info__image">
-                        <img src={pizza && pizza.imageUrl} alt=""/>
+                        <img src={pizza?.imageUrl} alt=""/>
                     </div>
                     <div className="pizza-info__content">
-                        <h1 className="pizza-info__title">{pizza && pizza.title}</h1>
-                        <h2 className="pizza-info__price">Цена: {pizza && pizza.price} ₽</h2>
+                        <h1 className="pizza-info__title">{pizza?.title}</h1>
+                        <h2 className="pizza-info__price">Цена: {pizza?.price} ₽</h2>
                         <h3>Описание:</h3>
                         <p className="pizza-info__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                             Accusantium ad adipisci, aliquam

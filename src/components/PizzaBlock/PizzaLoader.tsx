@@ -1,8 +1,8 @@
-import React from "react"
+import React, {FC} from "react"
 
 import ContentLoader from "react-content-loader"
 
-const PizzaLoader = () => (
+const PizzaLoader: FC = () => (
     <ContentLoader
         speed={2}
         width={280}

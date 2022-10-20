@@ -1,13 +1,17 @@
 import {Link} from "react-router-dom";
 import {CartItem} from "./CartItem";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import CartEmpty from "./CartEmpty";
 import {clearCart} from "../../store/cartSlice";
+import {FC} from "react";
+import {RootState, useAppDispatch} from "../../store/store";
 
-const Cart = () => {
-    const dispatch = useDispatch()
+const Cart: FC = () => {
 
-    const {totalCount, totalPrice, items} = useSelector(({cart}) => cart)
+    const dispatch = useAppDispatch()
+
+    const {totalCount, totalPrice, items} = useSelector((state: RootState) => state.cart)
+
     if (items.length === 0){
         return <CartEmpty/>
     } return (
