@@ -9,7 +9,7 @@ type M = MouseEvent & {
     path: Node[];
 }
 
-export const Sort: FC<SortProps> = ({sortBy, onChangeSortBy}) => {
+const Sort: FC<SortProps> =({sortBy, onChangeSortBy}) => {
 
     const [open, setOpen] = React.useState(false)
     const sortRef = React.useRef<HTMLDivElement>(null)
@@ -67,3 +67,5 @@ export const Sort: FC<SortProps> = ({sortBy, onChangeSortBy}) => {
         </div>
     );
 }
+
+export default React.memo(Sort)

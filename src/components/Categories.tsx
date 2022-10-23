@@ -5,7 +5,7 @@ type CategoriesProps = {
     onChangeCategory: (index: number) => void
 }
 
-export const Categories:FC<CategoriesProps> = ({activeCategory, onChangeCategory}) => {
+const Categories: FC<CategoriesProps> = ({activeCategory, onChangeCategory}) => {
 
     const categories = [
         'Все',
@@ -17,7 +17,6 @@ export const Categories:FC<CategoriesProps> = ({activeCategory, onChangeCategory
     ]
 
 
-
     return <div className="categories">
         <ul>
             {
@@ -27,3 +26,4 @@ export const Categories:FC<CategoriesProps> = ({activeCategory, onChangeCategory
         </ul>
     </div>;
 }
+export default React.memo(Categories)

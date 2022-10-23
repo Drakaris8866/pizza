@@ -1,13 +1,16 @@
-import {PizzaBlock, Sort, Categories} from "../index";
 import PizzaLoader from "../PizzaBlock/PizzaLoader";
 import React, {FC} from "react";
 import Pagination from "../Pagination";
 import {useSelector} from "react-redux";
 import qs from 'qs'
 import {useNavigate} from "react-router-dom";
-import {setCategory, setCurrentPage, setFilters, setSortBy} from "../../store/filterSlice";
-import {fetchPizzas, IParams} from "../../store/pizzasSlice";
 import {RootState, useAppDispatch} from "../../store/store";
+import {setCategory, setCurrentPage, setFilters, setSortBy} from "../../store/Filter/slice";
+import {IParams} from "../../store/Pizza/types";
+import {fetchPizzas} from "../../store/Pizza/async";
+import Categories from "../Categories";
+import Sort from "../Sort";
+import PizzaBlock from "../PizzaBlock/PizzaBlock";
 
 const Home: FC = () => {
 
@@ -71,15 +74,15 @@ const Home: FC = () => {
         dispatch(fetchPizzas(params))
     }
 
-    const onChangeCategory = (index: number) => {
+    const onChangeCategory = React.useCallback((index: number) => {
         dispatch(setCategory(index))
-    }
-    const onChangeSortBy = (index: number) => {
+    }, [])
+    const onChangeSortBy = React.useCallback((index: number) => {
         dispatch(setSortBy(index))
-    }
-    const onChangePage = (page: number) => {
+    },[])
+    const onChangePage = React.useCallback((page: number) => {
         dispatch(setCurrentPage(page))
-    }
+    }, [])
 
     return (
         <div className="content">

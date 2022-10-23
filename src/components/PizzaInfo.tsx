@@ -3,7 +3,7 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import Preloader from "./Preloader";
 
-const PizzaInfo: FC = () => {
+ const PizzaInfo: FC = () => {
 
     const [pizza, setPizza] = React.useState<{
         imageUrl: string,

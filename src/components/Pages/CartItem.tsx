@@ -1,4 +1,4 @@
-import {addItem, removeItem} from "../../store/cartSlice";
+import {addItem, removeAllItem, removeItem} from "../../store/Cart/slice";
 import {FC} from "react";
 import {useAppDispatch} from "../../store/store";
 
@@ -60,7 +60,8 @@ export const CartItem: FC<CartItemProps> = ({id, title, price, count, imageUrl, 
         <div className="cart__item-price">
             <b>{price * count} ₽</b>
         </div>
-        <div className="cart__item-remove">
+        <div onClick={() => dispatch(removeAllItem({id, currentSize, currentType}))}
+            className="cart__item-remove">
             <div className="button button--outline button--circle">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                      xmlns="http://www.w3.org/2000/svg">

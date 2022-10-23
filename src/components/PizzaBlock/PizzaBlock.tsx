@@ -1,9 +1,10 @@
 import React, {FC, useState} from "react";
 import {useSelector} from "react-redux";
-import {addItem, CartItem} from "../../store/cartSlice";
+import {addItem} from "../../store/Cart/slice";
 import {Link} from "react-router-dom";
 import {RootState, useAppDispatch} from "../../store/store";
-import {PizzaItem} from "../../store/pizzasSlice";
+import {CartItem} from "../../store/Cart/types";
+import {PizzaItem} from "../../store/Pizza/types";
 
 
 

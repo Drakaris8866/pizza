@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 import {CartItem} from "./CartItem";
 import {useSelector} from "react-redux";
 import CartEmpty from "./CartEmpty";
-import {clearCart} from "../../store/cartSlice";
+import {clearCart} from "../../store/Cart/slice";
 import {FC} from "react";
 import {RootState, useAppDispatch} from "../../store/store";
 

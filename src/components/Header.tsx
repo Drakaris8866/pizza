@@ -2,15 +2,14 @@ import logo from '../assets/img/pizza-logo.svg'
 import {Link} from "react-router-dom";
 import Search from "./Search/Search";
 import {useSelector} from "react-redux";
-import {FC} from "react";
+import React, {FC} from "react";
 import {RootState} from "../store/store";
 
 
-export const Header:FC = () => {
-
+export  const Header: FC = () => {
     const {totalPrice, totalCount} = useSelector((state: RootState) => state.cart)
 
-    return <div className="header">
+    return (<div className="header">
         <div className="container">
             <Link to="/" className="header__logo">
                 <img width="38" src={logo} alt="Pizza logo"/>
@@ -57,5 +56,5 @@ export const Header:FC = () => {
                 </Link>
             </div>
         </div>
-    </div>;
+    </div>);
 }

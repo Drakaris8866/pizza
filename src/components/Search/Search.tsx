@@ -1,12 +1,12 @@
 import styles from './search.module.scss'
-import {setInputValue} from "../../store/searchSlice";
+import {setInputValue} from "../../store/Search/slice";
 import debounce from 'lodash.debounce'
 import React, {FC} from "react";
 import {useAppDispatch} from "../../store/store";
 
 const Search: FC = () => {
 
-    const [value, setValue] = React.useState<string>('')
+    const [value, setValue] = React.useState('')
 
     const inputRef = React.useRef<HTMLInputElement>(null)
 
