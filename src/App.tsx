@@ -3,11 +3,9 @@ import React, {lazy, Suspense} from "react";
 import {Route, Routes} from "react-router-dom";
 import {Header} from "./components/Header";
 import Preloader from "./components/Preloader";
-
-
-const Home = lazy(() => import("./components/Pages/Home"))
-const Cart = lazy(() => import("./components/Pages/Cart"))
-const PizzaInfo = lazy(() => import("./components/PizzaInfo"))
+import Home from "./components/Pages/Home";
+import Cart from "./components/Pages/Cart";
+import PizzaInfo from "./components/PizzaInfo";
 
 
 function App() {
