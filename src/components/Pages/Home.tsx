@@ -74,15 +74,15 @@ const Home: FC = () => {
         dispatch(fetchPizzas(params))
     }
 
-    const onChangeCategory = React.useCallback((index: number) => {
+    const onChangeCategory = (index: number) => {
         dispatch(setCategory(index))
-    }, [])
-    const onChangeSortBy = React.useCallback((index: number) => {
+    }
+    const onChangeSortBy = (index: number) => {
         dispatch(setSortBy(index))
-    },[])
-    const onChangePage = React.useCallback((page: number) => {
+    }
+    const onChangePage = (page: number) => {
         dispatch(setCurrentPage(page))
-    }, [])
+    }
 
     return (
         <div className="content">
