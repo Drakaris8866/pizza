@@ -7,10 +7,6 @@
   flex-direction: column;
   justify-content: space-between;
 
-  &:not(:nth-of-type(4n)) {
-    margin-right: 35px;
-  }
-
   &__image {
     width: 260px;
   }
