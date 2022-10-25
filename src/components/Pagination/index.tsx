@@ -9,6 +9,9 @@ type PaginationProps = {
 }
 
 const index: FC<PaginationProps> = ({currentPage, onChangePage}) => {
+
+
+
     return (
         <ReactPaginate
             className={styles.root}
@@ -16,7 +19,7 @@ const index: FC<PaginationProps> = ({currentPage, onChangePage}) => {
             nextLabel=">"
             onPageChange={(e) => onChangePage(e.selected + 1)}
             pageRangeDisplayed={4}
-            pageCount={3}
+            pageCount={2}
             forcePage={currentPage - 1}
             previousLabel="<"
         />

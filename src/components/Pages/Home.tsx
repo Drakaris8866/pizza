@@ -54,7 +54,7 @@ const Home: FC = () => {
     const getPizzas = () => {
         const sortCategory = activeCategory === 0 ? 'category' : `category=${activeCategory}`
         const search = searchInputValue ? searchInputValue.toLowerCase() : ''
-        const pagination = activeCategory === 0 ? `page=${currentPage}&limit=4&` : ''
+        const pagination = activeCategory === 0 ? `page=${currentPage}&limit=6&` : ''
 
         const fetchSelectedSortBy = () => {
             if (sortBy === 0) {

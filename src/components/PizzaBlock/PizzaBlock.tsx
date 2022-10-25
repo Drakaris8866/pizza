@@ -37,7 +37,7 @@ const PizzaBlock: FC<PizzaItem> = ({id, title, imageUrl, price, sizes, types}) =
         dispatch(addItem(item))
     }
 
-    const cartItem = useSelector((state: RootState) => state.cart.items.find((obj => obj.id === id)))
+    const cartItem = useSelector((state: RootState) => state.cart.items.find((obj => obj.id === id && obj.currentType === currentType && obj.currentSize === currentSize )))
 
     const addedCount = cartItem ? cartItem.count : 0
 
